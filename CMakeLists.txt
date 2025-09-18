@@ -4,14 +4,9 @@ project(wx_clang_cmake_template LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Prefer static libraries and clean linking behavior
-set(CMAKE_FIND_LIBRARY_SUFFIXES .a)
-set(BUILD_SHARED_LIBS OFF)
-
 # wxWidgets configuration
 set(wxWidgets_REQUIRED_VERSION "3.2.8")
 set(wxWidgets_REQUIRED_COMPONENTS core base)
-set(wxWidgets_USE_STATIC ON)
 
 find_package(wxWidgets ${wxWidgets_REQUIRED_VERSION} QUIET COMPONENTS ${wxWidgets_REQUIRED_COMPONENTS})
 
@@ -47,18 +42,3 @@ else()
 endif()
 
 target_link_libraries(main PRIVATE ${wxWidgets_LIBRARIES})
-
-# Platform-specific static linking
-if(WIN32)
-    target_link_options(main PRIVATE -static -lc++ -lc++abi -lunwind -fuse-ld=lld -s)
-elseif(UNIX AND NOT APPLE)
-    target_link_options(main PRIVATE -stdlib=libc++)
-elseif(APPLE)
-    target_link_options(main PRIVATE -stdlib=libc++)
-endif()
-
-# Install settings
-install(TARGETS main
-    RUNTIME DESTINATION bin
-    BUNDLE DESTINATION .
-)

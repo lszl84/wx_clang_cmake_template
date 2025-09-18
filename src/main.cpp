@@ -30,7 +30,7 @@ bool MyApp::OnInit()
 MyFrame::MyFrame(const wxString& title)
     : wxFrame(nullptr, wxID_ANY, title)
 {
-  
+	new wxStaticText(this, wxID_ANY, "Good Morning");  
 }
 
 

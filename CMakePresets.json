@@ -26,8 +26,7 @@
       "inherits": "default",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_CXX_FLAGS": "-stdlib=libc++"
+        "CMAKE_CXX_COMPILER": "clang++"
       }
     },
     {
@@ -35,8 +34,7 @@
       "inherits": "default",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_CXX_FLAGS": "-stdlib=libc++"
+        "CMAKE_CXX_COMPILER": "clang++"
       }
     }
   ],
