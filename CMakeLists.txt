@@ -34,11 +34,20 @@ endif()
 
 set(SRCS src/main.cpp)
 
+
 if(APPLE)
+    # create bundle on apple compiles
     add_executable(main MACOSX_BUNDLE ${SRCS})
-    set_target_properties(main PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/src/Info.plist)
+
+    # Set a custom plist file for the app bundle - needed for Mac OS Retina display
+    set_target_properties(main PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+elseif(WIN32)
+    # the WIN32 is needed for Windows in order for it to look for WinMain
+    # instead of the main function.
+    add_executable(main WIN32 ${SRCS} src/main.exe.manifest src/resources.rc)
 else()
-    add_executable(main WIN32 ${SRCS} src/main.exe.manifest)
+    add_executable(main ${SRCS})
 endif()
+
 
 target_link_libraries(main PRIVATE ${wxWidgets_LIBRARIES})
