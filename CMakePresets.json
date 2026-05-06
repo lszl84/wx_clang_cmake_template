@@ -3,35 +3,11 @@
   "configurePresets": [
     {
       "name": "default",
-      "hidden": true,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "windows-static",
-      "inherits": "default",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_EXE_LINKER_FLAGS": "-lc++ -lc++abi -lunwind -static -fuse-ld=lld"
-      }
-    },
-    {
-      "name": "macos-dynamic",
-      "inherits": "default",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
-      }
-    },
-    {
-      "name": "linux-dynamic",
-      "inherits": "default",
-      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++"
       }
@@ -39,16 +15,8 @@
   ],
   "buildPresets": [
     {
-      "name": "build-windows",
-      "configurePreset": "windows-static"
-    },
-    {
-      "name": "build-macos",
-      "configurePreset": "macos-dynamic"
-    },
-    {
-      "name": "build-linux",
-      "configurePreset": "linux-dynamic"
+      "name": "default",
+      "configurePreset": "default"
     }
   ]
 }

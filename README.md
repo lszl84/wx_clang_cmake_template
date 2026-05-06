@@ -1,15 +1,15 @@
 # wx_clang_cmake_template
 
-## Building on Windows
-
-This links libstc++ and libundwind statically - the resulting executable does not require any DLLs.
+## Building
 
 ```
-cmake --preset windows-static
-cmake --build --preset build-windows
+cmake --preset default
+cmake --build --preset default
 ```
 
-## VSCode template
+On Windows this links libc++ and libunwind statically — the resulting executable does not require any DLLs.
+
+## VSCode / VSCodium
 
 Your mingw-clang installation should be in PATH. 
 

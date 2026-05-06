@@ -45,6 +45,10 @@ elseif(WIN32)
     # the WIN32 is needed for Windows in order for it to look for WinMain
     # instead of the main function.
     add_executable(main WIN32 ${SRCS} src/main.exe.manifest src/resources.rc)
+
+    # static linking for a self-contained Windows binary (no DLL dependencies)
+    target_link_options(main PRIVATE -static -fuse-ld=lld)
+    target_link_libraries(main PRIVATE c++ c++abi unwind)
 else()
     add_executable(main ${SRCS})
 endif()
