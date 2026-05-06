@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "configure",
+            "type": "shell",
+            "command": "cmake --preset default",
+            "group": "build",
+            "problemMatcher": {
+                "owner": "cmake",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^CMake (Error|Warning) at (.+):(\\d+)(?::(\\d+))?\\s*(\\(.*\\))?:\\s*$",
+                    "severity": 1,
+                    "file": 2,
+                    "line": 3,
+                    "column": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cmake --build --preset default",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["configure"],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error|fatal error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ]
+}
